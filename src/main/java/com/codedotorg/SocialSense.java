@@ -121,8 +121,22 @@ public class SocialSense {
      * @return A string indicating the overall sentiment ("Positive", "Negative", or "Neutral").
      */
     public String analyzeSentiment(String input) {
-        
-        return "";
+            int countPositive = 0;
+            int countNegative = 0;
+            for (String word : input.split(" ")) {
+                if (positiveWords.contains(word.toLowerCase())) {
+                    countPositive++;
+                } else if (negativeWords.contains(word.toLowerCase())) {
+                    countNegative++;
+                }
+            }
+            if (countPositive > countNegative) {
+                return "Positive";
+            } else if (countNegative > countPositive) {
+                return "Negative";
+            } else {
+                return "Neutral";
+            }
     }
 
     /**
